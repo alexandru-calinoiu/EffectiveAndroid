@@ -35,7 +35,7 @@ public class TopImagesListPresenterImpl implements TopImagesListPresenter {
                 @Override
                 public void success(Result<List<Image>> result) {
                     viewArticles.addAll(result.data);
-                    view.setImage(viewArticles);
+                    view.setImages(viewArticles);
                 }
 
                 @Override
@@ -44,7 +44,7 @@ public class TopImagesListPresenterImpl implements TopImagesListPresenter {
                 }
             });
         } else {
-            view.setImage(viewArticles);
+            view.setImages(viewArticles);
         }
     }
 

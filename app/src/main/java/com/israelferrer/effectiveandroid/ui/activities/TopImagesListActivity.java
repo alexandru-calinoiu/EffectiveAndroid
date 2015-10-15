@@ -28,14 +28,13 @@ import java.util.List;
 
 import butterknife.Bind;
 
-public class TopImagesListActivity extends EffectiveActivity implements RecyclerView
-        .OnItemTouchListener, TopImagesListView {
+public class TopImagesListActivity extends EffectiveActivity implements RecyclerView.OnItemTouchListener, TopImagesListView {
+
     @Bind(R.id.recyclerView)
     RecyclerView recyclerView;
     private ImageRecyclerView adapter;
     private GestureDetectorCompat gestureDetector;
     private TopImagesListPresenter presenter;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,7 +80,6 @@ public class TopImagesListActivity extends EffectiveActivity implements Recycler
         return presenter;
     }
 
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -115,7 +113,7 @@ public class TopImagesListActivity extends EffectiveActivity implements Recycler
     }
 
     @Override
-    public void setImage(List<Image> images) {
+    public void setImages(List<Image> images) {
         adapter = new ImageRecyclerView(images);
         recyclerView.setAdapter(adapter);
     }

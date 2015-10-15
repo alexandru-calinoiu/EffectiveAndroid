@@ -13,7 +13,6 @@ public class PresenterHolder {
 
     private Map<Class, Presenter> presenterMap;
 
-
     public static PresenterHolder getInstance() {
         if (singleton == null) {
             synchronized (PresenterHolder.class) {

@@ -29,14 +29,12 @@ import java.util.List;
 
 import butterknife.Bind;
 
-public class TopArticleListActivity extends EffectiveActivity implements RecyclerView
-        .OnItemTouchListener, TopArticleListView {
+public class TopArticleListActivity extends EffectiveActivity implements RecyclerView.OnItemTouchListener, TopArticleListView {
     @Bind(R.id.recyclerView)
     RecyclerView recyclerView;
     private ArticleRecyclerView adapter;
     private GestureDetectorCompat gestureDetector;
     private TopArticleListPresenter presenter;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,7 +85,6 @@ public class TopArticleListActivity extends EffectiveActivity implements Recycle
         }
         return presenter;
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -157,5 +154,4 @@ public class TopArticleListActivity extends EffectiveActivity implements Recycle
                         .TRANSITION_SHARED_ELEMENT);
         ActivityCompat.startActivity(this, startIntent, options.toBundle());
     }
-
 }
