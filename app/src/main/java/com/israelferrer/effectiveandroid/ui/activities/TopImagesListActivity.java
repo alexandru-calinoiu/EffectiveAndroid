@@ -28,13 +28,14 @@ import java.util.List;
 
 import butterknife.Bind;
 
-public class TopImagesListActivity extends EffectiveActivity implements RecyclerView.OnItemTouchListener, TopImagesListView {
-
+public class TopImagesListActivity extends EffectiveActivity implements RecyclerView
+        .OnItemTouchListener, TopImagesListView {
     @Bind(R.id.recyclerView)
     RecyclerView recyclerView;
     private ImageRecyclerView adapter;
     private GestureDetectorCompat gestureDetector;
     private TopImagesListPresenter presenter;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,14 +59,15 @@ public class TopImagesListActivity extends EffectiveActivity implements Recycler
     @Override
     protected void onSaveInstanceState(Bundle bundle) {
         presenter.setView(null);
-        PresenterHolder.getInstance().putPresenter(TopImagesListPresenter.class, presenter);
+        PresenterHolder.getInstance().putPresenter(TopImagesListActivity.class, presenter);
     }
+
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        if (this.isFinishing()) {
-            PresenterHolder.getInstance().remove(TopImagesListPresenter.class);
+        if (isFinishing()) {
+            PresenterHolder.getInstance().remove(TopImagesListActivity.class);
         }
     }
 
@@ -79,6 +81,7 @@ public class TopImagesListActivity extends EffectiveActivity implements Recycler
         }
         return presenter;
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -113,7 +116,7 @@ public class TopImagesListActivity extends EffectiveActivity implements Recycler
     }
 
     @Override
-    public void setImages(List<Image> images) {
+    public void setImage(List<Image> images) {
         adapter = new ImageRecyclerView(images);
         recyclerView.setAdapter(adapter);
     }

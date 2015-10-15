@@ -1,60 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:paddingTop="@dimen/spacing_medium"
-              android:paddingBottom="@dimen/spacing_medium"
-              android:paddingEnd="@dimen/spacing_large"
-              android:paddingStart="@dimen/spacing_large">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <import type="android.view.View" />
+        <variable
+            name="article"
+            type="com.israelferrer.effectiveandroid.entities.Article"/>
+    </data>
 
-    <android.support.v7.widget.CardView
-        android:id="@+id/cv"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+    <LinearLayout android:layout_width="match_parent"
+                  android:layout_height="match_parent"
+                  android:paddingBottom="@dimen/spacing_medium"
+                  android:paddingEnd="@dimen/spacing_large"
+                  android:paddingStart="@dimen/spacing_large"
+                  android:paddingTop="@dimen/spacing_medium">
 
-        <RelativeLayout
-            android:id="@+id/container_inner_item"
+        <android.support.v7.widget.CardView
+            android:id="@+id/cv"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_centerVertical="true"
-            android:layout_margin="@dimen/spacing_medium"
-            android:orientation="vertical">
+            android:layout_height="wrap_content">
 
-            <ImageView
-                android:id="@+id/media"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentTop="true"
+            <RelativeLayout
+                android:id="@+id/container_inner_item"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_centerVertical="true"
                 android:layout_margin="@dimen/spacing_medium"
-                android:contentDescription="@string/media"/>
+                android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
-                android:layout_toEndOf="@+id/media"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:layout_marginBottom="@dimen/spacing_medium"
-                android:textColor="@android:color/black"/>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_below="@+id/title"
-                android:layout_toEndOf="@+id/media">
-
-                <TextView
-                    android:id="@+id/retweet"
+                <ImageView
+                    android:id="@+id/media"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:drawablePadding="@dimen/spacing_xsmall"
-                    android:paddingStart="@dimen/spacing_xsmall"
-                    android:drawableStart="@drawable/retweet_light"/>
-            </LinearLayout>
-        </RelativeLayout>
-    </android.support.v7.widget.CardView>
-</LinearLayout>
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerVertical="true"
+                    android:layout_margin="@dimen/spacing_medium"
+                    android:contentDescription="@string/media"
+                    app:imageUrl="@{article.mediaUrl}"
+                    android:visibility="@{article.hasMediaUrl ? View.VISIBLE : View.GONE}"/>
+
+                <TextView
+                    android:id="@+id/title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginBottom="@dimen/spacing_medium"
+                    android:layout_toEndOf="@+id/media"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:textColor="@android:color/black"
+                    android:text="@{article.title}"/>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_below="@+id/title"
+                    android:layout_toEndOf="@+id/media">
+
+                    <TextView
+                        android:id="@+id/retweet"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:drawablePadding="@dimen/spacing_xsmall"
+                        android:drawableStart="@drawable/retweet_light"
+                        android:paddingStart="@dimen/spacing_xsmall"
+                        android:text="@{article.retweetCount}"/>
+                </LinearLayout>
+            </RelativeLayout>
+        </android.support.v7.widget.CardView>
+    </LinearLayout>
+</layout>

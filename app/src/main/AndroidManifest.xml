@@ -23,7 +23,7 @@
 
         <meta-data
             android:name="io.fabric.ApiKey"
-            android:value="d061941707dc45f7303eee6ea19f296b436b4a02" />
+            android:value="8c3bdab663aed5c0fe16b43596885eb3b36fefe1" />
 
         <activity
             android:name=".ui.activities.TopArticleListActivity"

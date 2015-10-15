@@ -9,6 +9,7 @@ import android.support.v4.view.GestureDetectorCompat;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.GestureDetector;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -20,7 +21,6 @@ import com.israelferrer.effectiveandroid.R;
 import com.israelferrer.effectiveandroid.entities.Article;
 import com.israelferrer.effectiveandroid.presenters.TopArticleListPresenter;
 import com.israelferrer.effectiveandroid.presenters.TopArticleListPresenterImpl;
-import com.israelferrer.effectiveandroid.presenters.TopImagesListPresenter;
 import com.israelferrer.effectiveandroid.ui.recycler.ArticleRecyclerView;
 import com.israelferrer.effectiveandroid.ui.views.TopArticleListView;
 import com.twitter.sdk.android.core.TwitterCore;
@@ -29,12 +29,14 @@ import java.util.List;
 
 import butterknife.Bind;
 
-public class TopArticleListActivity extends EffectiveActivity implements RecyclerView.OnItemTouchListener, TopArticleListView {
+public class TopArticleListActivity extends EffectiveActivity implements RecyclerView
+        .OnItemTouchListener, TopArticleListView {
     @Bind(R.id.recyclerView)
     RecyclerView recyclerView;
     private ArticleRecyclerView adapter;
     private GestureDetectorCompat gestureDetector;
     private TopArticleListPresenter presenter;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,7 +52,6 @@ public class TopArticleListActivity extends EffectiveActivity implements Recycle
         recyclerView.addOnItemTouchListener(this);
         gestureDetector =
                 new GestureDetectorCompat(this, new RecyclerViewDemoOnGestureListener());
-
         presenter = createPresenter();
         presenter.create();
     }
@@ -70,7 +71,7 @@ public class TopArticleListActivity extends EffectiveActivity implements Recycle
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        if (this.isFinishing()) {
+        if (isFinishing()) {
             PresenterHolder.getInstance().remove(TopArticleListActivity.class);
         }
     }
@@ -85,6 +86,7 @@ public class TopArticleListActivity extends EffectiveActivity implements Recycle
         }
         return presenter;
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -154,4 +156,5 @@ public class TopArticleListActivity extends EffectiveActivity implements Recycle
                         .TRANSITION_SHARED_ELEMENT);
         ActivityCompat.startActivity(this, startIntent, options.toBundle());
     }
+
 }

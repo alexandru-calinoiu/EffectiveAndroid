@@ -41,7 +41,7 @@ public class ScreenContainerImpl implements ScreenContainer, ScreenContainerView
     TextView usernameView;
     private ImageView userProfileView;
     private ImageLoader imageLoader;
-    private ScreenContainerPresenter presenter;
+    private final ScreenContainerPresenter presenter;
 
     @VisibleForTesting
     public ScreenContainerImpl(ScreenContainerPresenter presenter) {
@@ -117,8 +117,8 @@ public class ScreenContainerImpl implements ScreenContainer, ScreenContainerView
 
     @Override
     public void showProfile(Profile profile) {
-        usernameView.setText(profile.getHandle());
-        imageLoader.loadWithTransformation(userProfileView, profile.getProfileImageUrl(),
-                new CircleTransform());
+        // usernameView.setText(profile.getHandle());
+        // imageLoader.loadWithTransformation(userProfileView, profile.getProfileImageUrl(),
+//                new CircleTransform());
     }
 }

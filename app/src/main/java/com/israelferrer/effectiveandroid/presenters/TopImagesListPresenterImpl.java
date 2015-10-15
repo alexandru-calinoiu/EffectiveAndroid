@@ -19,7 +19,7 @@ public class TopImagesListPresenterImpl implements TopImagesListPresenter {
     private final TopImageListModel model;
 
     private TopImagesListView view;
-    private List<Image> viewArticles;
+    private List<Image> viewImages;
 
     public TopImagesListPresenterImpl(TopImagesListView view) {
         this.view = view;
@@ -29,22 +29,30 @@ public class TopImagesListPresenterImpl implements TopImagesListPresenter {
 
     @Override
     public void create() {
-        if (viewArticles == null) {
-            viewArticles = new ArrayList<>();
+        if (viewImages == null || viewImages.size() == 0) {
+            viewImages = new ArrayList<>();
             model.getMostRtImages(new Callback<List<Image>>() {
                 @Override
                 public void success(Result<List<Image>> result) {
-                    viewArticles.addAll(result.data);
-                    view.setImages(viewArticles);
+                    viewImages.addAll(result.data);
+                    setImages(viewImages);
                 }
 
                 @Override
                 public void failure(TwitterException e) {
-                    view.logout();
+                    if (view != null) {
+                        view.logout();
+                    }
                 }
             });
         } else {
-            view.setImages(viewArticles);
+            setImages(viewImages);
+        }
+    }
+
+    private void setImages(List<Image> articles) {
+        if (view != null) {
+            view.setImage(articles);
         }
     }
 

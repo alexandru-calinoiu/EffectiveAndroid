@@ -6,9 +6,6 @@ import android.support.annotation.NonNull;
 
 import com.twitter.sdk.android.core.models.Tweet;
 
-/**
- * Created by icamacho on 8/6/15.
- */
 public class Article implements Comparable<Article>, Parcelable {
     private final String title;
     private final String url;
@@ -105,5 +102,9 @@ public class Article implements Comparable<Article>, Parcelable {
 
     public String getMediaUrl() {
         return mediaUrl;
+    }
+
+    public boolean hasMediaUrl() {
+        return !getMediaUrl().isEmpty();
     }
 }

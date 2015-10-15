@@ -7,6 +7,6 @@ import java.util.List;
 
 public interface TopArticleListView {
     void setArticles(List<Article> articles);
-
+    
     void logout();
 }
